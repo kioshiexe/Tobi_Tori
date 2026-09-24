@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="login.css">
+    <title>Login</title>
+</head>
+<body>
+    <div class="login-container">
+        <div class="avatar">
+            <img src="assets/tobi_tori_logo.jpg" alt="Tobi Tori Logo">
+        </div>
+        <h1>Log In</h1>
+
+        <form action="login.php" method="POST">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+
+            <a href="password_reset.html" class="forgot-password">Forgot Password?</a>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</body>
+</html>
