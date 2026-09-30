@@ -10,16 +10,18 @@ body {
     align-items: center;
     font-family: Arial, sans-serif;
     color: white;
-    background: url('assets/Background_JPFood.jpg') center/cover no-repeat fixed;
+    position: relative;
+    overflow: hidden;
+    background: #0b0b0b;
 }
 
 body::before {
     content: "";
     position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.18);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    inset: -12px;
+    background: linear-gradient(rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.18)), url('/assets/Background_JPFood.jpg') center/cover no-repeat;
+    filter: blur(6px);
+    z-index: 0;
 }
 
 .login-container {
@@ -99,6 +101,20 @@ input {
 
 input::placeholder {
     color: rgba(255, 255, 255, 0.5);
+}
+
+input:focus {
+    border-bottom-color: #ff0000;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-text-fill-color: #ffffff;
+    -webkit-box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.8) inset;
+    box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.8) inset;
+    transition: background-color 9999s ease-in-out 0s;
 }
 
 .forgot-password {

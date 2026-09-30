@@ -1,0 +1,85 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: url('/assets/Background_JPFood.jpg') center/cover no-repeat fixed;
+    color: #ffffff;
+    line-height: 1.6;
+}
+
+.home-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.navbar {
+    width: 100%;
+    min-height: 72px;
+    padding: 10px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-bottom: 2px solid #ff3b30;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    display: block;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav-links a {
+    display: inline-block;
+    padding: 10px 16px;
+    color: #ffffff;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.nav-links a:hover,
+.nav-links a:focus-visible {
+    color: #ffffff;
+    background-color: #ff3b30;
+    outline: none;
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 10px 20px;
+    }
+
+    .nav-links {
+        gap: 2px;
+    }
+
+    .nav-links a {
+        padding: 9px 10px;
+        font-size: 0.9rem;
+    }
+}
