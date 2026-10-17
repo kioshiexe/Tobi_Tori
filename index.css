@@ -1,85 +1,731 @@
+/* Shared palette tokens keep the dashboard colors consistent. */
+:root {
+    color-scheme: light;
+    --ink: #22201e;
+    --muted: #817b75;
+    --line: #e9e4df;
+    --paper: #ffffff;
+    --canvas: #f6f4f1;
+    --tomato: #c93629;
+    --tomato-dark: #a92b22;
+    --green: #47745c;
+    --amber: #ae701f;
+    --sidebar: #1c1b19;
+}
+
+/* Global sizing and page defaults. */
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    background: url('/assets/Background_JPFood.jpg') center/cover no-repeat fixed;
-    color: #ffffff;
-    line-height: 1.6;
+    margin: 0;
+    min-width: 320px;
+    min-height: 100vh;
+    color: var(--ink);
+    background: var(--canvas);
+    font-family: "Trebuchet MS", Arial, sans-serif;
+    line-height: 1.5;
 }
 
-.home-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+a {
+    color: inherit;
 }
 
-.navbar {
-    width: 100%;
-    min-height: 72px;
-    padding: 10px 5%;
+.app-shell {
+    min-height: 100vh;
+}
+
+/* Fixed desktop rail with links to the inventory sections. */
+.sidebar {
+    position: fixed;
+    inset: 0 auto 0 0;
+    z-index: 2;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    background-color: rgba(0, 0, 0, 0.8);
-    border-bottom: 2px solid #ff3b30;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    width: 250px;
+    flex-direction: column;
+    padding: 26px 18px 20px;
+    color: #f8f5f1;
+    background: var(--sidebar);
 }
 
-.logo {
-    display: flex;
-    align-items: center;
-}
-
-.logo img {
-    display: block;
-    width: 52px;
-    height: 52px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-.nav-links {
+.brand {
     display: flex;
     align-items: center;
     gap: 12px;
+    padding: 0 8px 28px;
+    text-decoration: none;
+}
+
+.brand img {
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: white;
+}
+
+.brand-copy,
+.sidebar-note > span:last-child {
+    display: grid;
+    gap: 2px;
+}
+
+.brand-copy strong {
+    font-size: 0.95rem;
+    letter-spacing: 0.08em;
+}
+
+.brand-copy small {
+    color: #aaa49d;
+    font-size: 0.61rem;
+    letter-spacing: 0.12em;
+}
+
+.nav-caption,
+.eyebrow {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.67rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+}
+
+.nav-caption {
+    padding: 8px 12px 12px;
+    color: #938d86;
+}
+
+.nav-links {
+    display: grid;
+    gap: 6px;
     margin: 0;
     padding: 0;
     list-style: none;
 }
 
 .nav-links a {
-    display: inline-block;
-    padding: 10px 16px;
-    color: #ffffff;
-    border-radius: 6px;
-    font-weight: 600;
+    display: flex;
+    min-height: 48px;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-left: 3px solid transparent;
+    color: #c8c2bc;
+    font-size: 0.84rem;
     text-decoration: none;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: color 160ms ease, background-color 160ms ease;
 }
 
 .nav-links a:hover,
-.nav-links a:focus-visible {
+.nav-links a:focus-visible,
+.nav-links a.active {
+    border-left-color: var(--tomato);
     color: #ffffff;
-    background-color: #ff3b30;
+    background: #302724;
     outline: none;
 }
 
-@media (max-width: 480px) {
-    .navbar {
-        padding: 10px 20px;
+.nav-mark {
+    color: #a39b94;
+    font-size: 0.66rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+
+.nav-links a.active .nav-mark {
+    color: #f18172;
+}
+
+.sidebar-note {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin-top: auto;
+    padding: 16px 10px 3px;
+    border-top: 1px solid #393632;
+}
+
+.status-dot,
+.expiry-dot {
+    width: 8px;
+    height: 8px;
+    flex: 0 0 8px;
+    border-radius: 50%;
+    background: #74a986;
+}
+
+.sidebar-note strong {
+    font-size: 0.77rem;
+    font-weight: 600;
+}
+
+.sidebar-note small {
+    color: #aaa49d;
+    font-size: 0.7rem;
+}
+
+/* Workspace frame and top utility bar with account control. */
+.workspace {
+    min-height: 100vh;
+    margin-left: 250px;
+}
+
+.topbar {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    height: 70px;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 42px;
+    border-bottom: 1px solid var(--line);
+    background: rgba(255, 255, 255, 0.96);
+}
+
+.breadcrumb,
+.topbar-right {
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb {
+    gap: 11px;
+    color: #8a847e;
+    font-size: 0.78rem;
+}
+
+.breadcrumb strong {
+    color: var(--ink);
+    font-weight: 600;
+}
+
+.crumb-divider {
+    color: #c4bdb6;
+}
+
+.topbar-right {
+    gap: 17px;
+}
+
+.today-label {
+    color: var(--muted);
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+.profile-button {
+    width: 36px;
+    height: 36px;
+    border: 1px solid #eadbd6;
+    border-radius: 50%;
+    color: var(--tomato-dark);
+    background: #fbefec;
+    font-size: 0.68rem;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+/* Main dashboard spacing, title, and report shortcut. */
+.main-content {
+    width: min(100%, 1500px);
+    margin: 0 auto;
+    padding: 34px 42px 22px;
+}
+
+.page-heading {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 24px;
+    animation: rise-in 420ms ease both;
+}
+
+.page-heading h1,
+.panel-heading h2 {
+    margin: 5px 0 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-weight: 500;
+}
+
+.page-heading h1 {
+    font-size: 2rem;
+    line-height: 1.2;
+}
+
+.intro {
+    margin: 8px 0 0;
+    color: var(--muted);
+    font-size: 0.88rem;
+}
+
+.report-link,
+.text-link {
+    color: var(--tomato-dark);
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.report-link {
+    display: inline-flex;
+    min-height: 40px;
+    align-items: center;
+    gap: 8px;
+    padding: 0 14px;
+    border: 1px solid #e7c9c3;
+    background: #fffaf8;
+}
+
+.report-link span {
+    font-size: 1rem;
+}
+
+.report-link:hover,
+.text-link:hover {
+    color: #7d201a;
+}
+
+/* Summary tiles highlight stock, expiry, and record counts. */
+.metric-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    margin-bottom: 18px;
+}
+
+.metric-card {
+    position: relative;
+    min-height: 145px;
+    overflow: hidden;
+    padding: 17px 18px;
+    color: #ffffff;
+    animation: rise-in 460ms ease both;
+}
+
+.metric-card:nth-child(2) { animation-delay: 45ms; }
+.metric-card:nth-child(3) { animation-delay: 90ms; }
+.metric-card:nth-child(4) { animation-delay: 135ms; }
+
+.metric-red { background: var(--tomato); }
+.metric-dark { background: #34322f; }
+.metric-amber { background: #ac7126; }
+.metric-green { background: #52775e; }
+
+.metric-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.76rem;
+    font-weight: 600;
+}
+
+.metric-icon {
+    display: grid;
+    width: 30px;
+    height: 30px;
+    flex: 0 0 30px;
+    place-items: center;
+    border: 1px solid rgba(255, 255, 255, 0.42);
+    border-radius: 50%;
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.6rem;
+}
+
+.metric-card > strong {
+    display: block;
+    margin-top: 9px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 2.05rem;
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+.metric-card > small {
+    display: block;
+    margin-top: 4px;
+    color: rgba(255, 255, 255, 0.78);
+    font-size: 0.7rem;
+}
+
+/* White panels organize the ingredient and expiry views. */
+.content-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(310px, 0.85fr);
+    gap: 18px;
+    align-items: stretch;
+}
+
+.panel {
+    min-width: 0;
+    border: 1px solid #e9e4df;
+    background: var(--paper);
+    box-shadow: 0 2px 8px rgba(41, 32, 25, 0.035);
+    scroll-margin-top: 88px;
+}
+
+.panel-heading {
+    display: flex;
+    min-height: 82px;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 15px 20px;
+    border-bottom: 1px solid #eeeae6;
+}
+
+.panel-heading h2 {
+    font-size: 1.2rem;
+}
+
+.text-link {
+    font-size: 0.72rem;
+}
+
+.text-link span {
+    margin-left: 3px;
+}
+
+/* Inventory table formatting and horizontally scrollable overflow. */
+.table-wrap {
+    width: 100%;
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    white-space: nowrap;
+}
+
+th,
+td {
+    padding: 13px 16px;
+    border-bottom: 1px solid #f0edea;
+    font-size: 0.74rem;
+}
+
+th {
+    color: #827b75;
+    font-size: 0.64rem;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+}
+
+td {
+    color: #625d58;
+}
+
+tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.ingredient-name {
+    color: var(--ink);
+    font-weight: 700;
+}
+
+/* Stock and record labels communicate status at a glance. */
+.badge,
+.record-type,
+/* Expiry count and item-by-item freshness list. */
+.count-pill {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.badge {
+    padding: 4px 8px;
+    font-size: 0.64rem;
+    font-weight: 700;
+}
+
+.badge-good {
+    color: #3d6b4e;
+    background: #edf5ef;
+}
+
+.badge-low {
+    color: #9c621b;
+    background: #fbf1df;
+}
+
+.count-pill {
+    padding: 5px 9px;
+    color: var(--tomato-dark);
+    background: #fbefec;
+    font-size: 0.65rem;
+    font-weight: 700;
+}
+
+.expiration-list {
+    margin: 0;
+    padding: 0 19px;
+    list-style: none;
+}
+
+.expiration-list li {
+    display: grid;
+    min-height: 62px;
+    grid-template-columns: 63px minmax(0, 1fr) 8px;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid #f0edea;
+}
+
+.expiration-list li:last-child {
+    border-bottom: 0;
+}
+
+.expiry-date {
+    color: #716b65;
+    font-size: 0.7rem;
+    font-weight: 700;
+}
+
+.expiry-date.urgent {
+    color: var(--tomato-dark);
+}
+
+.expiry-item {
+    display: grid;
+    gap: 2px;
+}
+
+.expiry-item strong {
+    color: var(--ink);
+    font-size: 0.76rem;
+}
+
+.expiry-item small {
+    color: var(--muted);
+    font-size: 0.66rem;
+}
+
+.expiry-dot {
+    background: #d1a35e;
+}
+
+.urgent-dot {
+    background: var(--tomato);
+}
+
+/* Recent activity table and dashboard footer. */
+.records-panel {
+    margin-top: 18px;
+}
+
+.record-type {
+    padding: 4px 7px;
+    font-size: 0.65rem;
+    font-weight: 700;
+}
+
+.record-in {
+    color: #3d6b4e;
+    background: #edf5ef;
+}
+
+.record-out {
+    color: #9c621b;
+    background: #fbf1df;
+}
+
+.record-check {
+    color: #6c5c8b;
+    background: #f2eff7;
+}
+
+.page-footer {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 2px 0;
+    color: #8c857e;
+    font-size: 0.67rem;
+}
+
+.page-footer span:first-child {
+    color: var(--tomato-dark);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+/* Subtle entrance motion for key dashboard content. */
+@keyframes rise-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Tablet layout: narrower rail, two-column metrics, stacked panels. */
+@media (max-width: 1100px) {
+    .sidebar { width: 220px; }
+    .workspace { margin-left: 220px; }
+    .main-content { padding-right: 26px; padding-left: 26px; }
+    .topbar { padding: 0 26px; }
+    .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .content-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* Mobile layout: convert the sidebar into a horizontal navigation bar. */
+@media (max-width: 680px) {
+    .sidebar {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        padding: 14px 16px 12px;
+    }
+
+    .brand {
+        padding: 0 2px 12px;
+    }
+
+    .brand img {
+        width: 40px;
+        height: 40px;
+        flex-basis: 40px;
+    }
+
+    .nav-caption,
+    .sidebar-note {
+        display: none;
     }
 
     .nav-links {
-        gap: 2px;
+        display: flex;
+        gap: 5px;
+        overflow-x: auto;
+    }
+
+    .nav-links li {
+        flex: 1 0 auto;
     }
 
     .nav-links a {
-        padding: 9px 10px;
-        font-size: 0.9rem;
+        min-height: 40px;
+        gap: 7px;
+        padding: 8px 9px;
+        border-left: 0;
+        border-bottom: 2px solid transparent;
+        font-size: 0.72rem;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus-visible,
+    .nav-links a.active {
+        border-left: 0;
+        border-bottom-color: var(--tomato);
+    }
+
+    .workspace {
+        margin-left: 0;
+    }
+
+    .topbar {
+        position: static;
+        height: 56px;
+        padding: 0 18px;
+    }
+
+    .today-label {
+        display: none;
+    }
+
+    .main-content {
+        padding: 25px 16px 18px;
+    }
+
+    .page-heading {
+        align-items: flex-start;
+        margin-bottom: 20px;
+    }
+
+    .page-heading h1 {
+        font-size: 1.65rem;
+    }
+
+    .intro {
+        max-width: 350px;
+        font-size: 0.8rem;
+    }
+
+    .report-link {
+        min-height: 36px;
+        padding: 0 10px;
+        font-size: 0.7rem;
+    }
+
+    .metric-grid {
+        gap: 10px;
+    }
+
+    .metric-card {
+        min-height: 132px;
+        padding: 14px;
+    }
+
+    .metric-card > strong {
+        font-size: 1.8rem;
+    }
+
+    .metric-top {
+        align-items: flex-start;
+        font-size: 0.7rem;
+    }
+
+    .content-grid {
+        gap: 12px;
+    }
+
+    .panel-heading {
+        min-height: 72px;
+        padding: 13px 14px;
+    }
+
+    .panel-heading h2 {
+        font-size: 1.05rem;
+    }
+
+    .records-panel {
+        margin-top: 12px;
+    }
+
+    .page-footer {
+        flex-direction: column;
+        gap: 5px;
+    }
+}
+
+/* Small phones: tighten spacing while keeping metric cards readable. */
+@media (max-width: 420px) {
+    .main-content { padding-right: 12px; padding-left: 12px; }
+    .metric-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .metric-card { padding: 12px; }
+    .metric-icon { display: none; }
+    .page-heading { gap: 10px; }
+    .report-link { flex: 0 0 auto; }
+    .nav-links a { font-size: 0.68rem; }
+}
+
+/* Respect system settings that request reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
     }
 }
