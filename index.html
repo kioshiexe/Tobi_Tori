@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="index.css">
     <script src="index.js" defer></script>
     <title>Tobi Tori | Kitchen Inventory</title>
+    <link rel="icon" type="image/png" href="/assets/tobi_tori_icon.jpg">
 </head>
 <body>
     <div class="app-shell">
@@ -86,57 +87,95 @@
                     </section>
                 </section>
 
-                <!-- Current ingredient quantities and low-stock indicators. -->
+                <!-- Stock availability, reorder points, and overstock thresholds. -->
                 <section class="tab-panel" id="panel-ingredients" role="tabpanel" aria-labelledby="tab-ingredients" tabindex="0" hidden>
                     <article class="panel ingredient-panel">
                         <div class="panel-heading">
                             <div><p class="eyebrow">STOCK CONTROL</p><h1>Ingredient tracking</h1></div>
-                            <span class="count-pill">48 ingredients</span>
+                            <span class="count-pill">48 ingredients tracked</span>
                         </div>
+                        <div class="stock-alert" role="status">
+                            <span class="stock-alert-mark" aria-hidden="true">!</span>
+                            <p><strong>Stock attention needed</strong><span>6 ingredients are below their reorder point and 3 are above their target stock.</span></p>
+                        </div>
+                        <div class="table-caption"><h2>Stock availability</h2><p>Compare on-hand quantities with each ingredient's reorder point and target stock.</p></div>
                         <div class="table-wrap">
                             <table>
-                                <thead><tr><th>Ingredient</th><th>Category</th><th>In stock</th><th>Status</th></tr></thead>
+                                <thead><tr><th>Ingredient</th><th>Category</th><th>On hand</th><th>Reorder point</th><th>Target stock</th><th>Availability</th></tr></thead>
                                 <tbody>
-                                    <tr><td><span class="ingredient-name">Chicken thighs</span></td><td>Protein</td><td>8.2 kg</td><td><span class="badge badge-good">In stock</span></td></tr>
-                                    <tr><td><span class="ingredient-name">Jasmine rice</span></td><td>Pantry</td><td>2.4 kg</td><td><span class="badge badge-low">Low stock</span></td></tr>
-                                    <tr><td><span class="ingredient-name">Soy sauce</span></td><td>Condiments</td><td>5 bottles</td><td><span class="badge badge-good">In stock</span></td></tr>
-                                    <tr><td><span class="ingredient-name">Spring onions</span></td><td>Produce</td><td>0.6 kg</td><td><span class="badge badge-low">Low stock</span></td></tr>
+                                    <tr><td><span class="ingredient-name">Chicken thighs</span></td><td>Protein</td><td>8.2 kg</td><td>4 kg</td><td>12 kg</td><td><span class="badge badge-good">Available</span></td></tr>
+                                    <tr><td><span class="ingredient-name">Jasmine rice</span></td><td>Pantry</td><td>2.4 kg</td><td>3 kg</td><td>12 kg</td><td><span class="badge badge-low">Low stock</span></td></tr>
+                                    <tr><td><span class="ingredient-name">Soy sauce</span></td><td>Condiments</td><td>5 bottles</td><td>2 bottles</td><td>8 bottles</td><td><span class="badge badge-good">Available</span></td></tr>
+                                    <tr><td><span class="ingredient-name">Spring onions</span></td><td>Produce</td><td>0.6 kg</td><td>1.5 kg</td><td>4 kg</td><td><span class="badge badge-low">Low stock</span></td></tr>
+                                    <tr><td><span class="ingredient-name">Sesame oil</span></td><td>Condiments</td><td>14 bottles</td><td>2 bottles</td><td>10 bottles</td><td><span class="badge badge-overstock">Overstock</span></td></tr>
+                                    <tr><td><span class="ingredient-name">Garlic</span></td><td>Produce</td><td>9 kg</td><td>2 kg</td><td>6 kg</td><td><span class="badge badge-overstock">Overstock</span></td></tr>
                                 </tbody>
                             </table>
                         </div>
                     </article>
                 </section>
 
-                <!-- Items ordered by upcoming expiration date and urgency. -->
+                <!-- Near-expiry alerts and the upcoming expiration schedule. -->
                 <section class="tab-panel" id="panel-expiration" role="tabpanel" aria-labelledby="tab-expiration" tabindex="0" hidden>
                     <article class="panel expiration-panel">
                         <div class="panel-heading">
                             <div><p class="eyebrow">FRESHNESS CHECK</p><h1>Expiration tracking</h1></div>
-                            <span class="count-pill">4 items due soon</span>
+                            <span class="count-pill">4 items expiring in 7 days</span>
                         </div>
+                        <div class="expiry-alert" role="status">
+                            <span class="expiry-alert-mark" aria-hidden="true">!</span>
+                            <p><strong>2 items need attention within 48 hours</strong><span>Check freshness and prioritize these ingredients during prep.</span></p>
+                        </div>
+                        <div class="table-caption"><h2>Upcoming expirations</h2><p>Items are ordered by expiry date so the most urgent stock is easy to spot.</p></div>
                         <ul class="expiration-list">
-                            <li><span class="expiry-date urgent">Today</span><span class="expiry-item"><strong>Fresh tofu</strong><small>Refrigerated · 1.2 kg</small></span><span class="expiry-dot urgent-dot"></span></li>
-                            <li><span class="expiry-date urgent">Tomorrow</span><span class="expiry-item"><strong>Bean sprouts</strong><small>Produce · 0.8 kg</small></span><span class="expiry-dot urgent-dot"></span></li>
-                            <li><span class="expiry-date">Oct 20</span><span class="expiry-item"><strong>Chicken stock</strong><small>Refrigerated · 2 cartons</small></span><span class="expiry-dot"></span></li>
-                            <li><span class="expiry-date">Oct 23</span><span class="expiry-item"><strong>Kimchi</strong><small>Refrigerated · 1 jar</small></span><span class="expiry-dot"></span></li>
+                            <li><span class="expiry-date urgent">Today · Oct 17</span><span class="expiry-item"><strong>Fresh tofu</strong><small>Refrigerated · 1.2 kg · Check before use</small></span><span class="expiry-dot urgent-dot" aria-label="Urgent"></span></li>
+                            <li><span class="expiry-date urgent">Tomorrow · Oct 18</span><span class="expiry-item"><strong>Bean sprouts</strong><small>Produce · 0.8 kg · Check before use</small></span><span class="expiry-dot urgent-dot" aria-label="Urgent"></span></li>
+                            <li><span class="expiry-date">Oct 20 · 3 days</span><span class="expiry-item"><strong>Chicken stock</strong><small>Refrigerated · 2 cartons</small></span><span class="expiry-dot" aria-label="Expiring soon"></span></li>
+                            <li><span class="expiry-date">Oct 23 · 6 days</span><span class="expiry-item"><strong>Kimchi</strong><small>Refrigerated · 1 jar</small></span><span class="expiry-dot" aria-label="Expiring soon"></span></li>
                         </ul>
                     </article>
                 </section>
 
-                <!-- Recent inventory changes form the reports and records view. -->
+                <!-- Inventory summary and dated stock movements for reporting. -->
                 <section class="tab-panel" id="panel-records" role="tabpanel" aria-labelledby="tab-records" tabindex="0" hidden>
-                    <article class="panel records-panel">
+                    <article class="panel inventory-report-panel">
                         <div class="panel-heading">
-                            <div><p class="eyebrow">LATEST ACTIVITY</p><h1>Reports &amp; records</h1></div>
+                            <div><p class="eyebrow">INVENTORY SNAPSHOT</p><h1>Reports &amp; records</h1></div>
+                            <span class="count-pill">Updated today</span>
+                        </div>
+                        <div class="report-metrics" aria-label="Inventory report summary">
+                            <div class="report-metric"><span>Ingredients tracked</span><strong>48</strong><small>Across 8 categories</small></div>
+                            <div class="report-metric report-metric-low"><span>Below reorder point</span><strong>06</strong><small>Restock recommended</small></div>
+                            <div class="report-metric report-metric-over"><span>Above target stock</span><strong>03</strong><small>Review purchasing levels</small></div>
+                            <div class="report-metric"><span>Available in range</span><strong>39</strong><small>Within stock targets</small></div>
+                        </div>
+                        <div class="table-caption"><h2>Inventory report by category</h2><p>Stock distribution against reorder points and target levels.</p></div>
+                        <div class="table-wrap">
+                            <table>
+                                <thead><tr><th>Category</th><th>Tracked</th><th>Available</th><th>Low stock</th><th>Overstock</th></tr></thead>
+                                <tbody>
+                                    <tr><td><span class="ingredient-name">Protein</span></td><td>12</td><td>9</td><td>2</td><td>1</td></tr>
+                                    <tr><td><span class="ingredient-name">Produce</span></td><td>10</td><td>7</td><td>2</td><td>1</td></tr>
+                                    <tr><td><span class="ingredient-name">Pantry</span></td><td>18</td><td>16</td><td>1</td><td>1</td></tr>
+                                    <tr><td><span class="ingredient-name">Condiments</span></td><td>8</td><td>7</td><td>1</td><td>0</td></tr>
+                                    <tr class="report-total"><td>Total</td><td>48</td><td>39</td><td>6</td><td>3</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </article>
+                    <article class="panel usage-history-panel">
+                        <div class="panel-heading">
+                            <div><p class="eyebrow">LATEST ACTIVITY</p><h2>Usage history</h2></div>
                             <span class="count-pill">32 records this month</span>
                         </div>
                         <div class="table-wrap">
                             <table>
-                                <thead><tr><th>Record</th><th>Ingredient</th><th>Change</th><th>Recorded by</th><th>Date</th></tr></thead>
+                                <thead><tr><th>Activity</th><th>Ingredient</th><th>Quantity change</th><th>Recorded by</th><th>Date &amp; time</th></tr></thead>
                                 <tbody>
-                                    <tr><td><span class="record-type record-in">Stock added</span></td><td>Chicken thighs</td><td>+ 4.0 kg</td><td>Kitchen team</td><td>Today, 9:42 AM</td></tr>
+                                    <tr><td><span class="record-type record-in">Stock received</span></td><td>Chicken thighs</td><td>+ 4.0 kg</td><td>Kitchen team</td><td>Today, 9:42 AM</td></tr>
                                     <tr><td><span class="record-type record-out">Used in prep</span></td><td>Jasmine rice</td><td>- 1.5 kg</td><td>Kitchen team</td><td>Today, 8:15 AM</td></tr>
-                                    <tr><td><span class="record-type record-check">Stock check</span></td><td>Fresh tofu</td><td>Expiry updated</td><td>Kitchen team</td><td>Yesterday</td></tr>
+                                    <tr><td><span class="record-type record-out">Used in prep</span></td><td>Spring onions</td><td>- 0.3 kg</td><td>Kitchen team</td><td>Today, 7:50 AM</td></tr>
+                                    <tr><td><span class="record-type record-check">Stock check</span></td><td>Fresh tofu</td><td>Expiry verified</td><td>Kitchen team</td><td>Yesterday, 4:30 PM</td></tr>
                                 </tbody>
                             </table>
                         </div>

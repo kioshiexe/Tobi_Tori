@@ -525,6 +525,13 @@ a {
     font-size: 1.2rem;
 }
 
+.panel-heading h2 {
+    margin: 5px 0 0;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
 .text-link {
     font-size: 0.72rem;
 }
@@ -606,6 +613,71 @@ tbody tr:last-child td {
     font-weight: 700;
 }
 
+.badge-overstock {
+    color: var(--notice-text);
+    background: var(--notice-bg);
+}
+
+.stock-alert,
+.expiry-alert {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    margin: 18px 20px 0;
+    padding: 11px 13px;
+    border-left: 3px solid var(--amber);
+    color: var(--warning-text);
+    background: var(--warning-bg);
+}
+
+.expiry-alert {
+    border-left-color: var(--tomato);
+    color: var(--tomato-dark);
+    background: var(--accent-wash);
+}
+
+.stock-alert-mark,
+.expiry-alert-mark {
+    display: grid;
+    width: 24px;
+    height: 24px;
+    flex: 0 0 24px;
+    place-items: center;
+    border: 1px solid currentColor;
+    border-radius: 50%;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.stock-alert p,
+.expiry-alert p {
+    display: grid;
+    gap: 2px;
+    margin: 0;
+    font-size: 0.72rem;
+}
+
+.stock-alert p span,
+.expiry-alert p span {
+    color: var(--body-copy);
+}
+
+.table-caption {
+    padding: 18px 20px 9px;
+}
+
+.table-caption h2 {
+    margin: 0;
+    color: var(--ink);
+    font-size: 0.84rem;
+}
+
+.table-caption p {
+    margin: 3px 0 0;
+    color: var(--muted);
+    font-size: 0.69rem;
+}
+
 /* Expiration items are ordered by date and marked by urgency. */
 .expiration-list {
     margin: 0;
@@ -616,7 +688,7 @@ tbody tr:last-child td {
 .expiration-list li {
     display: grid;
     min-height: 62px;
-    grid-template-columns: 63px minmax(0, 1fr) 8px;
+    grid-template-columns: 112px minmax(0, 1fr) 8px;
     align-items: center;
     gap: 12px;
     border-bottom: 1px solid var(--table-rule);
@@ -659,7 +731,60 @@ tbody tr:last-child td {
     background: var(--tomato);
 }
 
-/* Recent activity table and dashboard footer. */
+.inventory-report-panel,
+.usage-history-panel {
+    margin-bottom: 18px;
+}
+
+.report-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    padding: 18px 20px 0;
+}
+
+.report-metric {
+    display: grid;
+    min-width: 0;
+    gap: 3px;
+    padding: 12px;
+    border: 1px solid var(--panel-rule);
+    background: var(--canvas);
+}
+
+.report-metric > span {
+    color: var(--muted);
+    font-size: 0.66rem;
+}
+
+.report-metric strong {
+    color: var(--ink);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 1.45rem;
+    font-weight: 500;
+    line-height: 1.15;
+}
+
+.report-metric small {
+    color: var(--muted);
+    font-size: 0.62rem;
+}
+
+.report-metric-low strong {
+    color: var(--warning-text);
+}
+
+.report-metric-over strong {
+    color: var(--notice-text);
+}
+
+.report-total td {
+    border-top: 1px solid var(--panel-border);
+    color: var(--ink);
+    font-weight: 700;
+}
+
+/* Stock movement history and dashboard footer. */
 .record-type {
     padding: 4px 7px;
     font-size: 0.65rem;
@@ -829,6 +954,25 @@ tbody tr:last-child td {
 
     .panel-heading h1 {
         font-size: 1.05rem;
+    }
+
+    .panel-heading h2 {
+        font-size: 1.05rem;
+    }
+
+    .report-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        padding: 14px 14px 0;
+    }
+
+    .stock-alert,
+    .expiry-alert {
+        align-items: flex-start;
+        margin: 14px 14px 0;
+    }
+
+    .table-caption {
+        padding: 16px 14px 8px;
     }
 
     .page-footer {
