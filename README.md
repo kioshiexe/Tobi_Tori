@@ -3,18 +3,18 @@ Tobi Tori | Inventory Management System
 Features
 
     1. Login
-        - UI
-        - Functionality
+        - Layout
     2. Password Reset
-        - UI
-        - Functionality
+        - Layout
     3. Dashboard
-
         a. Inventory Overview
-            - Functionality
+            - Layout
         b. Ingredient Tracking
-            - Stock Availability
+            - Layout
         c. Expiration Tracking
-            -
+            - Layout
         d. Reports and Records
-            - 
+            - Layout
+
+To DO:
+- 
