@@ -15,6 +15,13 @@ Features
             - Layout
         d. Reports and Records
             - Layout
+    4. Database
+        - Established
 
 To DO:
-- 
+- Backend for dashboard
+- Account management and database
+- SQL Injection
+- Testing and Debugging
+
+How To Use:
