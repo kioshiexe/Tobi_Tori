@@ -1,16 +1,27 @@
 Tobi Tori | Inventory Management System
 
 Features
+
     1. Login
         - Layout
     2. Password Reset
         - Layout
     3. Dashboard
         a. Inventory Overview
-            - Functionality
+            - Layout
         b. Ingredient Tracking
             - Layout
         c. Expiration Tracking
             - Layout
         d. Reports and Records
-            - 
+            - Layout
+    4. Database
+        - Established Dashboard Database
+
+To DO:
+- Backend for dashboard
+- Account management and database
+- SQL Injection
+- Testing and Debugging
+
+How To Use:
