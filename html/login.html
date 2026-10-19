@@ -14,7 +14,8 @@
         </div>
         <h1>Log In</h1>
 
-        <form action="../index.html" method="GET">
+        <p id="login-error" class="login-error" role="alert" hidden></p>
+        <form action="/php/login.php" method="POST">
             <label for="username">Username</label>
             <input type="text" id="username" name="username" required>
 
@@ -26,5 +27,6 @@
             <button type="submit">Login</button>
         </form>
     </div>
+    <script src="/js/login.js" defer></script>
 </body>
 </html>

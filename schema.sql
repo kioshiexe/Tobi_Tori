@@ -3,6 +3,13 @@ DROP DATABASE IF EXISTS inventory_management;
 CREATE DATABASE inventory_management;
 USE inventory_management;
 
+CREATE TABLE user (
+	user_id INT AUTO_INCREMENT PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+	email VARCHAR(255) UNIQUE NOT NULL
+);
+
 CREATE TABLE categories (
     category_id INT AUTO_INCREMENT PRIMARY KEY,
     category_name VARCHAR(80) NOT NULL UNIQUE,
