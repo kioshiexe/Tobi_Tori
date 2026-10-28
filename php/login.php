@@ -73,5 +73,5 @@ session_regenerate_id(true);
 $_SESSION['user_id'] = (int) $user['user_id'];
 $_SESSION['username'] = $user['username'];
 
-header('Location: /php/dashboard.php');
+header('Location: /html/dashboard.html');
 exit;
